@@ -36,5 +36,3 @@ app.post("http://localhost:3000/", function(req, res){
     res.send("The result is "+ d);
   }
   });
-
-app.listen(5000, function(){console.log("server is running on port 5000.")});
