@@ -11,51 +11,30 @@ app.get("/final",(req,res)=>{
         var parsedBody = JSON.parse(body);
         var a =  parsedBody["n1"];
         var b =  parsedBody["n2"];
+        var c =  parsedBody["opt"]
       }
     }
   );
 });
 
-app.post("http://localhost:3000/answer", function(req, res){
-  var c = a + b;
-  res.send("The result is "+ c);
-});
+app.post("http://localhost:3000/", function(req, res){
+  if(c==='add'){
+    var d = a+b;
+    res.send("The result is "+ d);
+  }
+  else if (c==='subtract') {
+    var d = a-b;
+    res.send("The result is "+ d);
+
+  }
+  else if (c ==='Multiply') {
+    var d = a*b;
+    res.send("The result is "+ d);
+  }
+  else {
+    var d = a/b;
+    res.send("The result is "+ d);
+  }
+  });
 
 app.listen(5000, function(){console.log("server is running on port 5000.")});
-
-// const express = require('express'); //Line 1
-// const app = express(); //Line 2
-// const port = process.env.PORT || 5000; //Line 3
-//
-// // This displays message that the server running and listening to specified port
-// app.listen(port, () => console.log(`Listening on port ${port}`)); //Line 6
-
-// create a GET route
-// app.get("/", function(req, res){ //Line 9
-//   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' }); //Line 10
-// });
-
-
-
-
-
-// app.get("/", function(req, res){
-// const getval = async () => {
-//   try {
-//     return await axios.get('http://localhost:3000/')
-//   } catch (error) {
-//     console.error(error)
-//   }
-// }
-// });
-//
-// app.post("/", function(req, res){
-//
-//   var a = Number(req.body.n1);
-//   var b = Number(req.body.n2);
-//   var c = a + b;
-//   res.send("The result is "+ c);
-// });
-// app.listen(5000, function(){
-//   console.log("server is running on port 3000.")
-// });
