@@ -19,7 +19,7 @@ app.get("/",function(req, res){
   res.send("running")
 })
 
-app.post("/", function(req, res){
+app.post("http://localhost:3000/", function(req, res){
   if(c==='add'){
     var d = a+b;
     res.write("The result is "+ d);
