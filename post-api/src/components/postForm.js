@@ -3,7 +3,6 @@ import Axios from "axios";
 
 
 
-
 function PostForm(){
   const url="https://getpantry.cloud/apiv1/pantry/bd119e09-40af-4668-adae-3f270fc9886f/basket/add"
   const [data, setData]=useState({
@@ -21,6 +20,20 @@ function PostForm(){
     .then(res=>{
       console.log(res.data)
     })
+    // Axios.get('http://localhost:5000/ans')
+    // .then(response => alert("The answer is " + response.data.d))
+    // .catch(error => {
+    //   console.log({ errorMessage: error.message });
+    //     console.error('There was an error!', error);
+    // });
+  }
+  function man(e){
+    Axios.get('http://localhost:5000/ans')
+    .then(response => alert("The answer is " + response.data.d))
+    .catch(error => {
+      console.log({ errorMessage: error.message });
+        console.error('There was an error!', error);
+    });
   }
   function handle(e){
     const newdata={...data}
@@ -44,7 +57,10 @@ function PostForm(){
             <option value="Multiply">*</option>
             <option value="Divide">/</option>
           </select><br /><br />
-          <button>Calculate</button>
+          <button>Submit</button>
+          <br />
+          <h4>To get answer click here:</h4>
+          <button onClick ={(e)=>man(e)}>Answer</button>
 
 
 

@@ -2,48 +2,49 @@ const express = require('express');
 var request = require("request");
 const https = require('https');
 const app = express();
+const axios = require("axios");
+const bodyParser = require("body-parser");
 
+app.use(bodyParser.urlencoded({extended:true}));
 
-app.get("/",function(req, res){
+app.get("/ans",function(req, res){
   const url = 'https://getpantry.cloud/apiv1/pantry/bd119e09-40af-4668-adae-3f270fc9886f/basket/add'
   https.get(url,function(response){
+  
     console.log(response.statusCode);
     response.on("data",function(data){
       const e=JSON.parse(data)
       const a = e.n1
       const b = e.n2
       const c = e.opt
-      console.log(e)
+
+      if(c==='add'){
+        var d = a+b;
+        res.send({d});
+      }
+      else if (c==='Subtract') {
+        var d = a-b;
+        res.send({d});
+
+      }
+      else if (c ==='Multiply') {
+        var d = a*b;
+        res.send({d});
+      }
+      else {
+        var d = a/b;
+        res.send({d});
+
+    }
+      console.log(d)
     })
   })
-  res.send("running")
-})
+});
 
-app.post("http://localhost:3000/", function(req, res){
-  if(c==='add'){
-    var d = a+b;
-    res.write("The result is "+ d);
-  }
-  else if (c==='subtract') {
-    var d = a-b;
-    res.write("The result is "+ d);
-
-  }
-  else if (c ==='Multiply') {
-    var d = a*b;
-    res.write("The result is "+ d);
-  }
-  else {
-    var d = a/b;
-    res.write("The result is "+ d);
-
-  }
-  res.send()
-  });
 
 
 app.listen(5000,function(){
-  console.log("ruunong at 5000")
+  console.log("running at 5000")
 })
 // app.get("/",(req,res)=>{
 // https.get('https://getpantry.cloud/apiv1/pantry/bd119e09-40af-4668-adae-3f270fc9886f/basket/add', (res) => {
